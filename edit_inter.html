@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" type="text/css" href="css/dropdown.css">
+<link rel="stylesheet" type="text/css" href="css/style.css">
+<link rel="stylesheet" type="text/css" href="css/table.css">
+<link rel="stylesheet" type="text/css" href="css/modal.css">
+<script>
+    function delete_function(){
+    let isBoss = confirm("Are you you want to delete?");
+    
+    alert( isBoss ); 
+    }
+    </script>
+    
+</head>
+<body id ="bd-image">
+
+<div class="navbar">
+  <a href="Sign_up.html">Log Out</a>
+   <div class="dropdown">
+    <button class="dropbtn">Profile 
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content">
+      <a href="profile_red.html">red-flag record</a>
+      <a href="profile_inter.html">intervention record</a>
+    </div>
+  </div>
+  
+  <div class="dropdown">
+    <button class="dropbtn">Manage records 
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content">
+      <a href="edit_red.html">red-flag record</a>
+      <a href="edit_inter.html">intervention record</a>
+    </div>
+  </div>
+   <div class="dropdown">
+    <button class="dropbtn">View records 
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content">
+      <a href="view_red.html">red-flag record</a>
+      <a href="view_inter.html">intervention record</a>
+    </div>
+  </div>
+  <div class="dropdown">
+    <button class="dropbtn">Create records 
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content">
+      <a href="create_red.html">red-flag record</a>
+      <a href="create_inter.html">intervention record</a>
+      
+    </div>
+  </div>
+  <a href="home.html">Home</a>
+</div>
+<div class="container">
+    <h2>To edit and delete red-flags</h2>
+   
+   <table id="t01">
+     <tr>
+       <th>Title</th>
+       
+       <th>Description</th>
+       <th>Action</th>
+     </tr>
+     <tr>
+       <td id="t04">Floods<br></td>
+	   <td id="t04a">in Jan 2018, a police officer by the names of the Late Afande Kirumira was caught accepting a bribe from a law breaker</td>
+       
+      
+       <td id="t04b"><button class="js1" id = "myBtn">Edit</button>
+       <button id = "js2" onclick="delete_function()" style="width:auto;">Delete</button></td>
+     </tr>
+      <tr>
+       <td id="t04">Floods<br></td>
+	   <td id="t04a">in Jan 2018, a police officer by the names of the Late Afande Kirumira was caught accepting a bribe from a law breaker</td>
+       
+      
+       <td id="t04b"><button class="js1" id = "myBtn">Edit</button>
+       <button id = "js2" onclick="delete_function()" style="width:auto;">Delete</button></td>
+     </tr>
+       
+   </table>
+   
+   </div>
+
+ <!-- Modal content -->
+
+       <div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <p>Edit the required fields</p>
+    <div class="container">
+        <form>
+          <div class="row">
+            <div class="col-25">
+              <label for="fname">Incident title</label>
+            </div>
+            <div class="col-75">
+              <input type="text" id="fname" name="firstname" placeholder="Your name..">
+            </div>
+          </div>
+             
+          <div class="row">
+            <div class="col-25">
+              <label for="subject">Incident description</label>
+            </div>
+            <div class="col-75">
+              <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
+            </div>
+          </div>
+          <div class="row">
+              <div class="col-25">
+                <label for="fname">Add latitude</label>
+              </div>
+              <div class="col-75">
+                <input type="text" id="fname" name="firstname" placeholder="Your name..">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-25">
+                <label for="fname">Add longitude</label>
+              </div>
+              <div class="col-75">
+                <input type="text" id="fname" name="firstname" placeholder="Your name..">
+              </div>
+            </div>
+          <div class="row">
+              <div class="col-25">
+                <label for="subject">Upload image</label>
+              </div>
+              <div class="col-75">
+                  <input type="file" name="pic" accept="image/*">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-25">
+                <label for="subject">Upload video</label>
+              </div>
+              <div class="col-75">
+                  <input type="file" name="pic" accept="video/*">
+              </div>
+            </div>
+         
+          <div class="row">
+            <input type="submit" value="Submit">
+          </div>
+        </form>
+      </div>
+  </div>
+
+</div>
+
+<script>
+// Get the modal
+var modal = document.getElementById('myModal');
+
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal 
+btn.onclick = function() {
+    modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+    modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+</script>
+
+</body>
+<div class="footer1">
+<footer>
+                       
+<h1>&copy; 2018 iReporter ALL RIGHTS RESERVED.</h1> 
+					         
+
+
+</footer>
+</div>
+</html>
