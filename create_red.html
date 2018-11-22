@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>
+iReporter
+</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" type="text/css" href="dropdown.css">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body id ="bd-image">
+
+<div class="navbar">
+<a href="Sign_up.html">Log Out</a>
+   <div class="dropdown">
+    <button class="dropbtn">Profile 
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content">
+      <a href="profile_red.html">red-flag record</a>
+      <a href="profile_inter.html">intervention record</a>
+    </div>
+  </div>
+  
+  
+  <div class="dropdown">
+    <button class="dropbtn">Manage records 
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content">
+      <a href="edit_red.html">red-flag record</a>
+      <a href="edit_inter.html">intervention record</a>
+    </div>
+  </div>
+   <div class="dropdown">
+    <button class="dropbtn">View records 
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content">
+      <a href="view_red.html">red-flag record</a>
+      <a href="view_inter.html">intervention record</a>
+    </div>
+  </div>
+  <div class="dropdown">
+    <button class="dropbtn">Create records 
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content">
+      <a href="create_red.html">red-flag record</a>
+      <a href="create_inter.html">intervention record</a>
+      
+    </div>
+  </div>
+  <a href="home.html">Home</a>
+</div>
+<div class="container">
+<h2>Create a red-flag record</h2>
+  <form action="/action_page.php">
+    <div class="row">
+      <div class="col-25">
+        <label for="fname">Incident title</label>
+      </div>
+      <div class="col-75">
+        <input type="text" id="fname" name="firstname" placeholder="Provide a tilte for the incident">
+      </div>
+    </div>
+   	
+    <div class="row">
+      <div class="col-25">
+        <label for="subject">Incident description</label>
+      </div>
+      <div class="col-75">
+        <textarea id="subject" name="subject" placeholder="Write something describing the incident" ></textarea>
+      </div>
+    </div>
+    <div class="row">
+        <div class="col-25">
+          <label for="fname">Add latitude</label>
+        </div>
+        <div class="col-75">
+          <input type="number" id="fname" name="firstname" placeholder="latitude of the place">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-25">
+          <label for="fname">Add longitude</label>
+        </div>
+        <div class="col-75">
+          <input type="number" id="fname" name="firstname" placeholder="longitude of the place">
+        </div>
+      </div>
+
+   
+    <div class="row">
+      <input type="submit" value="Submit">
+    </div>
+  </form>
+</div>
+
+</body>
+<div class="footer1">
+<footer>
+                       
+<h1>&copy; 2018 iReporter ALL RIGHTS RESERVED.</h1>   
+					         
+
+
+</footer>
+</div>
+</html>
