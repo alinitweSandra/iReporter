@@ -4,25 +4,25 @@ from api.views.redflag_views import redflag_records
 from api.models.redflag import check_type_date,check_type_list,check_type_string,check_type_int
 
 
-class RecordComment(Resource):
+class RecordStatus(Resource):
     
 
-      def put(self, id, name):
+      def put(self, id):
             if request.content_type != 'application/json': 
                   return {"error":"format must be json"}
             data=request.get_json()
-            if 'location' not in data :
+            if 'status' not in data :
                   return {"error":"the field is empty"}
-            if data['location'] is False:
+            if data['status'] is False:
                   return {"error":"the field has no value"}
-            if check_type_list(self,data['location']) is False:
-                  return {"error":"not a list entered"} 
+            if check_type_string(self,data['status']) is False:
+                  return {"error":"not a string entered"} 
            
             for store in redflag_records:
                         if store['id'] == id:
                               
-                              del store['comment'],store['location']
-                              item = {'comment': data['comment'],'location': data['location']}
+                              del store['status']
+                              item = {'status': data['status']}
             redflag_records.append(item)
             
             return {"status":201,"data":[{"id":id,"message":"uploaded red-flag's record"}]},201
