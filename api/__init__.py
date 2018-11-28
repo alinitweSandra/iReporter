@@ -11,5 +11,5 @@ api=Api(app)
 api.add_resource(RecordList, '/api/v1/red-flags')    
 api.add_resource(Records, '/api/v1/red-flags/<int:id>') 
 api.add_resource(RecordComment, '/api/v1/red-flags/<int:id>/<string:name>')
-api.add_resource(RecordStatus, '/api/v1/red-flags/<int:id>')  
+api.add_resource(RecordStatus, '/api/v1/red-flags/<int:id>')   
  

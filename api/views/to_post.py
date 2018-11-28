@@ -12,12 +12,14 @@ class RecordList(Resource):
       def post(self):
             if request.content_type != 'application/json': 
                   return {"error":"format must be json"}
-            data=request.get_json()  
-            check_format=[data['createdBy'],data['comment'],data['status'],data['type'],data['createdOn']]
+            data=request.get_json()
+      
+            
             if 'createdBy' not in data and 'createdOn' not in data and 'status'  not in data and 'comment' not in data and \
             'location' not in data and 'type' not in data: 
                   return {"error":"some fields are empty"},400
             
+            check_format=[data['createdBy'],data['comment'],data['status'],data['type'],data['createdOn']] 
             if not all(isinstance(x,str) for x in check_format):
                   return {"error":"entered a non string where not applicable"}
             if check_type_list(self,data['location'])is False:

@@ -11,19 +11,18 @@ class Records(Resource):
             if request.content_type != 'application/json': 
                   return {"error":"format must be json"}
             #data=request.get_json()                        
-            else:
-                  for store in redflag_records:
+            for store in redflag_records:
                         if store['id'] == id:
                               return {"status":200,"data":[{'createdBy':store['createdBy'],'id':store['id'],\
                               'comment':store['comment'],'type':store['type'],'createdOn':store['createdOn'],\
                               'location':store['location'],'status':store['status']}]} 
                                                            
-                        return {'message':'store not found'},404
+                        
                   
       def delete(self, id):
             for store in redflag_records:
                   if store['id'] == id:
                         redflag_records.remove(store)
                   
-            return {'message':'store not found'}
+            return {"status":200,"data":[{"id":id,"message":"red-flag record has been deleted"}]},201
 
