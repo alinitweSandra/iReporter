@@ -5,16 +5,15 @@ from api import app
 
 class Tests(TestCase):
     """
-       Class to test api
+       Class to test end points 
     """ 
-    
     def setUp(self):
         self.app = app
         self.client = self.app.test_client
     
     def test_get_record(self):
         """
-           method to get a specific item
+           method to get a specific record
         """
         get_result = self.client().get('/api/v1/red-flags/1')
         self.assertEqual(get_result.status_code, 200)   
@@ -24,7 +23,7 @@ class Tests(TestCase):
     
     def test_get_non_item(self) :  
         """
-           method to test an item that does not exist
+           method to test a record that does not exist
         """
         get_result = self.client().get('/api/v1/red-flags/qwer')
         self.assertEqual(get_result.status_code, 404)
@@ -32,7 +31,7 @@ class Tests(TestCase):
 
     def test_delete_item(self) :  
         """
-           method to test an item to be deleted
+           method to test a record to be deleted
         """
         get_result = self.client().get('/api/v1/red-flags/1')
         self.assertEqual(get_result.status_code, 200)
@@ -40,13 +39,13 @@ class Tests(TestCase):
 
     def test_delete_non_item(self) :  
         """
-           method to test an item to be deleted
+           method to delete a record that doesnot exxist
         """
         get_result = self.client().get('/api/v1/red-flags/delete')
         self.assertEqual(get_result.status_code, 404)
     def test_get_records(self):
         """
-           method to get all products
+           method to get all records
         """
         get_result = self.client().get('/api/v1/red-flags')
         response = json.loads(get_result.data.decode("utf8"))
@@ -55,7 +54,7 @@ class Tests(TestCase):
 
     # def test_update_record(self):
     #     """
-    #        method to add a specific product
+    #        method to add a specific record
     #     """  
     #     post_result = self.client().post('api/v1/red-flags/1/jki', content_type='application/json',
     #                                      data=json.dumps(dict(                                         
@@ -72,7 +71,7 @@ class Tests(TestCase):
     
     def test_add_record(self):
         """
-           method to add a specific product
+           method to add a record
         """  
         post_result = self.client().post('/api/v1/red-flags', content_type='application/json',
                                          data=json.dumps(dict(                                         
