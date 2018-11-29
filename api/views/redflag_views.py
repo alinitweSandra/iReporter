@@ -1,15 +1,14 @@
 from flask import request,jsonify,Flask
 from flask_restful import Resource, Api
 from api.models.redflag import check_type_date,check_type_list,check_type_string,check_type_int
-
+from api.models.check_content import check_body
 
 
 redflag_records = []
 class Records(Resource):
    
       def get(self, id):
-            if request.content_type != 'application/json': 
-                  return {"error":"format must be json"}
+            check_body()
             #data=request.get_json()                        
             for store in redflag_records:
                         if store['id'] == id:
