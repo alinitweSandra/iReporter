@@ -19,11 +19,14 @@ class RecordStatus(Resource):
                   return {"error":"not a string entered"} 
            
             for store in redflag_records:
-                        if store['id'] == id:
+                  if store['status']!='draft':
+                        return {"message":"cant update record due to status value"}
+                  if store['id'] == id:
                               
+                              #del store['comment'],store['location']
                               del store['status']
-                              item = {'status': data['status']}
-            redflag_records.append(item)
+                              store.update({'status':data['status']})
+            
             
             return {"status":201,"data":[{"id":id,"message":"uploaded red-flag's record"}]},201
 

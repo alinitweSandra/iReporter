@@ -3,6 +3,7 @@ from unittest import TestCase
 from flask import json
 from api import app
 
+
 class Tests(TestCase):
     """
        Class to test end points 

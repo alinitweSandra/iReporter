@@ -8,6 +8,7 @@ install:
 # command to run tests
 script: 
 - pytest --cov=.
+#- pytest --cov --disable-warnings
 - coverage
 after_success:
 - coveralls
