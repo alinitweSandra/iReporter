@@ -1,6 +1,6 @@
 from flask import request,jsonify,Flask
 from flask_restful import Resource, Api
-from api.views.redflag_views import redflag_records
+
 from api.models.redflag import check_type_date,check_type_list,check_type_string,check_type_int
 import jwt
 import datetime

@@ -2,6 +2,7 @@ from flask import request,jsonify,Flask
 from flask_restful import Resource, Api
 from api.views.redflag_views import redflag_records
 from api.models.redflag import check_type_date,check_type_list,check_type_string,check_type_int
+from api.views.to_check_content import check_body
 
 class RecordList(Resource):    
            
@@ -10,10 +11,8 @@ class RecordList(Resource):
               return {'records': redflag_records}
 
       def post(self):
-            if request.content_type != 'application/json': 
-                  return {"error":"format must be json"}
-            data=request.get_json()
-      
+            check_body()
+            data=request.get_json()     
             
             if 'createdBy' not in data and 'createdOn' not in data and 'status'  not in data and 'comment' not in data and \
             'location' not in data and 'type' not in data: 

@@ -1,11 +1,12 @@
 from flask import request,jsonify,Flask, make_response
 from flask_restful import Resource, Api
-from api.views.redflag_views import redflag_records
+
 from api.models.redflag import check_type_date,check_type_list,check_type_string,check_type_int
 from flask_jwt_extended import create_access_token
 from flask_jwt import jwt_required
 import datetime
 import jwt
+from api.views.to_check_content import check_body
 
 secret_key='jose'
 
@@ -13,8 +14,7 @@ users_list = []
 class CreateUser(Resource):
       
       def post(self):
-            if request.content_type != 'application/json': 
-                  return {"error":"format must be json"}
+            check_body()
             data=request.get_json()
       
             
@@ -31,7 +31,7 @@ class CreateUser(Resource):
                   if users['email']==data['email'] and users['username']==data['username']:
                         return {'message':"that username {} already exists".format(data['username'])}, 400
             else:
-                        id=len(redflag_records)+1
+                        id=len(users_list)+1
                         users = {'user_id':id, 'firstname':data['firstname'],
                         'lastname':data['lastname'],'email':data['email'],
                         'othernames':data['othernames'],'registered':data['registered'],

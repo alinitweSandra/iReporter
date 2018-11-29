@@ -3,13 +3,15 @@ from flask_restful import Resource, Api
 from api.models.redflag import check_type_date,check_type_list,check_type_string,check_type_int
 from flask_jwt import jwt_required
 from api.helper.jwt_required import token_required
+from api.views.to_check_content import check_body
 
 redflag_records = []
+
 class Records(Resource):
-      @token_required()
+      #@token_required
       def get(self, current_user, id):
-            if request.content_type != 'application/json': 
-                  return {"error":"format must be json"}
+            check_body()
+           
             #data=request.get_json()                        
             for store in redflag_records:
                         if store['id'] == id:

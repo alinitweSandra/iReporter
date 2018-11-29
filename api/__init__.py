@@ -6,7 +6,7 @@ from api.views.to_post import RecordList
 from api.views.status import RecordStatus
 from api.views.location import RecordLocation
 from flask_jwt import JWT,jwt_required
-from api.views.security import authenticate,identity
+
 from api.views.to_create_users import CreateUser
 from api.views.to_auth import To_Auth
 
@@ -15,7 +15,7 @@ app = Flask(__name__)
 secret_key = "jose"
 api=Api(app)
 
-jwt = JWT(app,authenticate, identity)
+
 # to create users url
 api.add_resource(CreateUser, '/api/v1/create-users') 
 
