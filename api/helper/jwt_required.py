@@ -25,11 +25,8 @@ def token_required(f):
             return {'message':'Token is missing!'}, 401
         try:
             data = jwt.decode(token, secret_key, algorithm='HS256')
-            user_username = data['username']
+            current_user = data['username']
             #users_list = AUTH_USERS .users
-            for user in users_list:
-                if user_username == user['username'] and user['isAdmin']== 'yes':
-                    current_user = user
         except:
             return {'message':'Token is invalid!'}, 401
         return f(self, current_user, *args, **kwargs)

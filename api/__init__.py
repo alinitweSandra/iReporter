@@ -1,10 +1,10 @@
 from flask import Flask
 from flask_restful import Api
-from api.views.comments import RecordComment
+
 from api.views.redflag_views import Records
 from api.views.to_post import RecordList
 from api.views.status import RecordStatus
-from api.views.location import RecordLocation
+
 from flask_jwt import JWT,jwt_required
 
 from api.views.to_create_users import CreateUser
