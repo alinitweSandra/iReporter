@@ -53,15 +53,14 @@ API Endpoints currently available are;
 |__Http header__| __Endpoint__ | __Functionality__ | __Body__  |
 |------|-------------|------------|----------|
 
-|POST|  /api/v1/red-flags      | Create a ​red-flag​ record     | {"status":"draft","createdOn":"2/3/2018",
-	"createdBy":"user",	"location":[0,0],	"comment":"comment",	"type":"type"}|
+|POST|  /api/v1/red-flags      | Create a ​red-flag​ record     | {"status":"draft","createdOn":"2/3/2018"}|
 |POST|  /api/v1/red-flags    | create a red-flag record | {"status":"draft","createdOn":"2/3/2018","createdBy":2    |	
 |POST| /api/v1/create-users  | sign up a  user |{"firstname":"aheebwa","lastname":"kukute","othernames":"bob"|
 |GET|  /api/v1/red-flags        | get all records   |                              |
 |GET|  /api/v1/red-flags/<int:id>     | get a specific record by id    |                            |
 |PUT|  /api/v1/red-flags/<int:id>     | update a record by the user and specific id of the record  | {"location":[100,100] or "status":"rejected"}             |
 |DELETE|  /api/v1/red-flags/<int:id>     | delete a record by id by user who created it    |                     |
-|POST| /api/v1/auth/login           | login a user {"username":user,"password":"user"}|                             |
+|POST| /api/v1/auth/login           | login a user |{"username":user,"password":"user"}|                            
 
 
 
