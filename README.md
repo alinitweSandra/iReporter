@@ -48,14 +48,6 @@ source bin/activate
 
 API Endpoints currently available are;
 
-|__Http header__| __Endpoint__ | __Functionality__    | __Body__  |
-|------|-------------|------------|--------------------------------|
-|POST|  /api/v1/red-flags      | Create a ​red-flag​ record     | {"status":"draft","createdOn":"2/3/2018",
-	"createdBy":"user",
-	"location":[0,0],
-	"comment":"comment",
-	"type":"type"
-}
 
 |__Http header__| __Endpoint__ | __Functionality__ | __Body__  |
 |------|-------------|------------|----------|
