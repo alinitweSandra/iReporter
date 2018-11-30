@@ -59,25 +59,9 @@ API Endpoints currently available are;
 
 |__Http header__| __Endpoint__ | __Functionality__ | 
 |------|-------------|------------|
-|POST|  /api/v1/red-flags      | create a red-flag record : {"status":"draft",
-	"createdOn":"2/3/2018",
-	"createdBy":2,
-	"location":[0,0],
-	"comment":"comment",
-	"type":"type"
-}
-    |
-|POST| /api/v1/create-users           | sign up a  user :{"firstname":"aheebwa",
-"lastname":"kukute",
-"othernames":"bob",
-"email":"sandraalinitwe@gmail.com",
-"phoneNumber":"256757852937",
-"username":"user",
-"registered":"29/09/2015",
-"isAdmin":True,
-"password":"user"
-}
-| 
+|POST|  /api/v1/red-flags      | create a red-flag record : {"status":"draft","createdOn":"2/3/2018","createdBy":2,
+	"location":[0,0],"comment":"comment",	"type":"type"}  |
+|POST| /api/v1/create-users           | sign up a  user :{"firstname":"aheebwa","lastname":"kukute","othernames":"bob","email":"sandraalinitwe@gmail.com","phoneNumber":"256757852937","username":"user","registered":"29/09/2015","isAdmin":True,"password":"user"}| 
 |GET|  /api/v1/red-flags        | get all records   |
 |GET|  /api/v1/red-flags/<int:id>     | get a specific record by id    |
 |PUT|  /api/v1/red-flags/<int:id>     | update a record by the user and specific id of the record  |
