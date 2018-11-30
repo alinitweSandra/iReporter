@@ -124,7 +124,22 @@ class Tests(TestCase):
         """
         get_result = self.client().get('/api/v1/red-flags/1',headers={"token": self.user_generated_token})
         self.assertEqual(get_result.status_code, 200)
-    
+
+
+    def test_update_item(self) :  
+        """
+            method to test a record to be deleted
+        """
+        get_result = self.client().get('/api/v1/red-flags/1',headers={"token": self.user_generated_token})
+        self.assertEqual(get_result.status_code, 200)
+
+    def test_update_a_non_existing_item(self) :  
+        """
+            method to test a record to be deleted
+        """
+        get_result = self.client().get('/api/v1/red-flags/not',headers={"token": self.user_generated_token})
+        self.assertEqual(get_result.status_code, 404)
+            
 
     def test_delete_non_item(self) :  
         """
@@ -167,4 +182,3 @@ class Tests(TestCase):
         post_result = self.client().post('/api/v1/red-flags', content_type = 'application/json',
                                          data=json.dumps(dict()))
         self.assertEqual(post_result.status_code, 400) 
-    
