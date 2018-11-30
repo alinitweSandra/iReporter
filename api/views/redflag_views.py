@@ -9,7 +9,7 @@ redflag_records = []
 
 class Records(Resource):
       #@token_required
-      def get(self, current_user, id):
+      def get(self, id):
             check_body()
            
             #data=request.get_json()                        

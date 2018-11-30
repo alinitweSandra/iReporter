@@ -21,9 +21,9 @@ api.add_resource(CreateUser, '/api/v1/create-users')
 
 api.add_resource(RecordList, '/api/v1/red-flags')    
 api.add_resource(Records, '/api/v1/red-flags/<int:id>') 
-api.add_resource(RecordComment, '/api/v1/red-flags/<int:id>')
+
 api.add_resource(RecordStatus, '/api/v1/red-flags/<int:id>') 
-api.add_resource(RecordLocation, '/api/v1/red-flags/<int:id>') 
+
 
 # to log in
 api.add_resource(To_Auth, '/api/v1/auth/login') 
