@@ -58,7 +58,7 @@ API Endpoints currently available are;
 }
 
 |__Http header__| __Endpoint__ | __Functionality__ | __Body__  |
-|------|-------------|------------|
+|------|-------------|------------|----------|
 |POST|  /api/v1/red-flags    | create a red-flag record | {"status":"draft","createdOn":"2/3/2018","createdBy":2|
 	
 |POST| /api/v1/create-users  | sign up a  user |{"firstname":"aheebwa","lastname":"kukute","othernames":"bob"|
