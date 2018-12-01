@@ -7,9 +7,9 @@ from api.views.to_check_content import check_body
 class RecordList(Resource):    
            
       def get(self):
-                       
-              return {'records': redflag_records}
-
+              check_body()         
+              #return {'records': redflag_records}
+              return {"status":200,"data": redflag_records},200
       def post(self):
             check_body()
             data=request.get_json()     

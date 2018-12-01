@@ -70,26 +70,18 @@ class Tests(TestCase):
         self.result = json.loads(user_login_result.data)
         self.user_generated_token = self.result['token_generated']
         self.result2 = json.loads(admin_login_result.data)
-        # self.admin_generated_token = self.result2['token_generated']
+        #self.admin_generated_token = self.result2['token_generated']
 
 
-
-
-
-
-
-
-
-
-
-    def test_get_non_item(self) :  
+    def test_add_user_with_empty_fields(self):
         """
-        method to test a record that does not exist
-        """
-        get_result = self.client().get('/api/v1/red-flags/qwer',headers={"token": self.user_generated_token})
-        self.assertEqual(get_result.status_code, 404)
-
-
+           method to test adding a user with empty fields
+        """  
+        post_result = self.client().post('/api/v1/create-users', content_type = 'application/json',
+                                         data=json.dumps(dict()))
+        self.assertEqual(post_result.status_code, 400) 
+    
+    
     def test_add_record(self):
         """
            method to add a record
@@ -110,6 +102,29 @@ class Tests(TestCase):
         assert json_data['status'] == 201
         assert json_data['data'][0] == {"id": 1,"message": "created red-flag record"} 
     
+    
+
+
+    def test_add_record_with_empty_fields(self):
+        """
+           method to test adding a record with empty fields
+        """  
+        post_result = self.client().post('/api/v1/red-flags', content_type = 'application/json',
+                                         data=json.dumps(dict()))
+        self.assertEqual(post_result.status_code, 400) 
+    
+    
+    
+    def test_get_non_record(self) :  
+        """
+        method to test a record that does not exist
+        """
+        get_result = self.client().get('/api/v1/red-flags/qwer',headers={"token": self.user_generated_token})
+        self.assertEqual(get_result.status_code, 404)
+
+
+    
+    
     def test_get_record(self):
         """
            method to get a specific record
@@ -117,36 +132,7 @@ class Tests(TestCase):
         get_result = self.client().get('/api/v1/red-flags/1',headers={"token": self.user_generated_token})
         self.assertEqual(get_result.status_code, 200)   
     
-    
-    def test_delete_item(self) :  
-        """
-           method to test a record to be deleted
-        """
-        get_result = self.client().get('/api/v1/red-flags/1',headers={"token": self.user_generated_token})
-        self.assertEqual(get_result.status_code, 200)
 
-
-    def test_update_item(self) :  
-        """
-            method to test a record to be deleted
-        """
-        get_result = self.client().get('/api/v1/red-flags/1',headers={"token": self.user_generated_token})
-        self.assertEqual(get_result.status_code, 200)
-
-    def test_update_a_non_existing_item(self) :  
-        """
-            method to test a record to be deleted
-        """
-        get_result = self.client().get('/api/v1/red-flags/not',headers={"token": self.user_generated_token})
-        self.assertEqual(get_result.status_code, 404)
-            
-
-    def test_delete_non_item(self) :  
-        """
-           method to delete a record that doesnot exxist
-        """
-        get_result = self.client().get('/api/v1/red-flags/delete',headers={"token": self.user_generated_token})
-        self.assertEqual(get_result.status_code, 404)
     def test_get_records(self):
         """
            method to get all records
@@ -156,29 +142,74 @@ class Tests(TestCase):
         self.assertEqual(get_result.status_code, 200)
         self.assertIsInstance(response, dict)
 
-    # def test_update_record(self):
+    def test_no_redflags(self):
+        """
+           method to test an empty specific record dictionary
+        """
+        get_result = self.client().get('/api/v1/red-flags')
+        self.assertEqual(get_result.status_code, 200)   
+        json_data = json.loads(get_result.data)      
+        assert json_data['status'] == 200
+        
+
+
+
+
+
+    def test_delete_item(self) :  
+        """
+           method to test a record to be deleted
+        """
+        get_result = self.client().get('/api/v1/red-flags/1',headers={"token": self.user_generated_token})
+        self.assertEqual(get_result.status_code, 200)
+
+    
+
+
+    def test_delete_non_item(self) :  
+        """
+           method to delete a record that doesnot exxist
+        """
+        get_result = self.client().get('/api/v1/red-flags/delete',headers={"token": self.user_generated_token})
+        self.assertEqual(get_result.status_code, 404)
+    
+
+
+    def test_update_record(self) :  
+        """
+            method to test a record to be deleted
+        """
+        get_result = self.client().get('/api/v1/red-flags/1',headers={"token": self.user_generated_token})
+        self.assertEqual(get_result.status_code, 200)
+
+
+    # def test_update_location(self) :  
     #     """
-    #        method to add a specific record
-    #     """  
-    #     post_result = self.client().post('api/v1/red-flags/1/jki', content_type='application/json',
-    #                                      data=json.dumps(dict(                                         
-    #                                         location= [100,8],
-    #                                         comment= "were"  
-    #                                         )))
- 
-        
-        
+    #         method to test a record to be deleted
+    #     """
+    #     post_result = self.client().post('/api/v1/red-flags/1',headers={"token": self.user_generated_token}, content_type='application/json',
+    #                                     data=json.dumps({"location":[100,100]}))
+
     #     self.assertEqual(post_result.status_code, 201)   
     #     json_data = json.loads(post_result.data)      
     #     assert json_data['status'] == 201
-    #     assert json_data['data'][0] == {"id": 1,"message": "uploaded red-flag's record"}     
+    #     assert json_data['data'][0] == {"id": 1}
+    #     assert json_data['data'][1]=={"message":"uploaded red-flag's record location"} 
+        
+    def test_update_a_non_existing_item(self) :  
+        """
+            method to test a record to be deleted
+        """
+        get_result = self.client().get('/api/v1/red-flags/not',headers={"token": self.user_generated_token})
+        self.assertEqual(get_result.status_code, 404)
+            
+
+    
+
+   
     
         
     
-    def test_add_product_with_empty_fields(self):
-        """
-           method to test adding a record with empty fields
-        """  
-        post_result = self.client().post('/api/v1/red-flags', content_type = 'application/json',
-                                         data=json.dumps(dict()))
-        self.assertEqual(post_result.status_code, 400) 
+    
+
+    

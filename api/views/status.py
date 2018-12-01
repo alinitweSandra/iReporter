@@ -3,19 +3,21 @@ from flask_restful import Resource, Api
 from api.views.redflag_views import redflag_records
 from api.models.redflag import check_type_date,check_type_list,check_type_string,check_type_int
 from api.views.to_create_users import users_list
+from api.helper.jwt_required import token_required
+from api.views.to_check_content import check_body
 
 
 class RecordStatus(Resource):
     
 
-      def put(self, id):
-            if request.content_type != 'application/json': 
-                   return {"error":"format must be json"}
+      @token_required
+      def put(self,current_user, id):
+            check_body()
             data=request.get_json()
             if 'status' not in data and 'location' not in data :
                    return {"error":"the field is empty"}
             for users in users_list:
-                  if users['isAdmin']=='yes':
+                  if users['isAdmin']==True:
                         if data['status'] is False:
                              return {"error":"the field has no value"}
                         if check_type_string(self,data['status']) is False:
@@ -46,7 +48,7 @@ class RecordStatus(Resource):
                                     store.update({'location':data['location']})
                         
                         
-                        return {"status":201,"data":[{"id":id,"message":"uploaded red-flag's record comment"}]},201
+                        return {"status":201,"data":[{"id":id,"message":"uploaded red-flag's record location"}]},201
 
             
             
