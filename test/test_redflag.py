@@ -87,12 +87,10 @@ class Tests(TestCase):
            method to add a record
         """  
         post_result = self.client().post('/api/v1/red-flags',headers={"token": self.user_generated_token}, content_type='application/json',   data=json.dumps(dict(                                         
-                                            createdOn= "11/11/2011",
-                                            createdBy=2,
                                             type= "cfgv",
                                             location= [9,8],
                                             comment= "fcgvbhj",        
-                                            status= "99999")))
+                                            )))
  
         
         
@@ -102,6 +100,83 @@ class Tests(TestCase):
         assert json_data['data'][0] == {"id": 1,"message": "created red-flag record"} 
     
     
+    def test_add_record_with_int_type(self):
+        """
+           method to add a record
+        """  
+        post_result = self.client().post('/api/v1/red-flags',headers={"token": self.user_generated_token}, content_type='application/json',   data=json.dumps(dict(                                         
+                                            type= 4,
+                                            location= [9,8],
+                                            comment= "fcgvbhj",        
+                                            )))
+ 
+        
+        
+        self.assertEqual(post_result.status_code, 400)   
+        json_data = json.loads(post_result.data)      
+        assert json_data['status'] == 400
+        self.assertTrue(post_result.json["error"], "enter only string")
+    
+
+    def test_add_record_with_int_comment(self):
+        """
+           method to add a record
+        """  
+        post_result = self.client().post('/api/v1/red-flags',headers={"token": self.user_generated_token}, content_type='application/json',   data=json.dumps(dict(                                         
+                                            type= "type",
+                                            location= [9,8],
+                                            comment= 1,        
+                                            )))
+ 
+        
+        
+        self.assertEqual(post_result.status_code, 400)   
+        json_data = json.loads(post_result.data)      
+        assert json_data['status'] == 400
+        self.assertTrue(post_result.json["error"], "enter only string") 
+    
+
+
+
+    def test_add_record_with_int_location(self):
+        """
+           method to add a record
+        """  
+        post_result = self.client().post('/api/v1/red-flags',headers={"token": self.user_generated_token}, content_type='application/json',   data=json.dumps(dict(                                         
+                                            type= "type",
+                                            location= 4,
+                                            comment= "fcgvbhj",        
+                                            )))
+ 
+        
+        
+        self.assertEqual(post_result.status_code, 400)   
+        json_data = json.loads(post_result.data)      
+        assert json_data['status'] == 400
+        self.assertTrue(post_result.json["error"], "location: list") 
+
+    
+    def test_add_record_with_string_location(self):
+        """
+           method to add a record
+        """  
+        post_result = self.client().post('/api/v1/red-flags',headers={"token": self.user_generated_token}, content_type='application/json',   data=json.dumps(dict(                                         
+                                            type= "type",
+                                            location= "4",
+                                            comment= "fcgvbhj",        
+                                            )))
+ 
+        
+        
+        self.assertEqual(post_result.status_code, 400)   
+        json_data = json.loads(post_result.data)      
+        assert json_data['status'] == 400
+        self.assertTrue(post_result.json["error"], "location: list")
+
+
+
+
+
 
 
     def test_add_record_with_empty_fields(self):
@@ -154,17 +229,16 @@ class Tests(TestCase):
         """
            method to test a record to be deleted
         """
-        get_result = self.client().get('/api/v1/red-flags/1',headers={"token": self.user_generated_token})
+        get_result = self.client().delete('/api/v1/red-flags/1',headers={"token": self.user_generated_token})
         self.assertEqual(get_result.status_code, 200)
 
-    
-
+ 
 
     def test_delete_non_item(self) :  
         """
            method to delete a record that doesnot exxist
         """
-        get_result = self.client().get('/api/v1/red-flags/delete',headers={"token": self.user_generated_token})
+        get_result = self.client().delete('/api/v1/red-flags/delete',headers={"token": self.user_generated_token})
         self.assertEqual(get_result.status_code, 404)
     
 
@@ -176,19 +250,6 @@ class Tests(TestCase):
         get_result = self.client().get('/api/v1/red-flags/1',headers={"token": self.user_generated_token})
         self.assertEqual(get_result.status_code, 200)
 
-
-    # def test_update_location(self) :  
-    #     """
-    #         method to test a record to be deleted
-    #     """
-    #     post_result = self.client().post('/api/v1/red-flags/1',headers={"token": self.user_generated_token}, content_type='application/json',
-    #                                     data=json.dumps({"status":"[100,100]"}))
-
-    #     self.assertEqual(post_result.status_code, 201)   
-    #     json_data = json.loads(post_result.data)      
-    #     assert json_data['status'] == 201
-    #     assert json_data['data'][0] == {"id": 1}
-    #     assert json_data['data'][1]=={"message":"uploaded red-flag's record location"} 
         
     def test_update_a_non_existing_item(self) :  
         """
@@ -196,14 +257,18 @@ class Tests(TestCase):
         """
         get_result = self.client().get('/api/v1/red-flags/not',headers={"token": self.user_generated_token})
         self.assertEqual(get_result.status_code, 404)
-            
 
-    
 
-   
-    
-        
-    
-    
 
-    
+# ############################# tests for checking whethera red-flag already exists #################################
+#     def test_whether_a_redflag_already_exists(self):
+#         get_result = self.client().post('/api/v1/red-flags', headers={"token": self.user_generated_token},content_type='application/json',
+#                             data=json.dumps({"type" : "type",
+#                                                 "location" : [0,0],
+#                                                 "comment" : "comment"}))
+#         assert get_result.status_code == 201
+
+#         json_data = json.loads(get_result.data)
+#         assert "data" in json_data
+#         assert json_data['data'][0]== {"status":201,"message":"user exists"} 
+#         #assert json_data['data'][0] == {"id": 1,"message": "created red-flag record"} 

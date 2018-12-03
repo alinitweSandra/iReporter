@@ -33,7 +33,7 @@ class RecordList(Resource):
 
             for items in redflag_records:
                   if items['location']==data['location']:
-                        return {"status":400,"message":"{} exists".format('createdBy')}, 400
+                        return {"status":201,"message":"{} exists".format('createdBy')}, 201
             else:
                   for user in users_list:
                         if user['username']==current_user:
