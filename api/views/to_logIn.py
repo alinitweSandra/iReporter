@@ -11,9 +11,10 @@ class LogIn():
         for user in alist:
             if username == user['username']:
                 if password == user['password']:
+                    # if id1 ==user['id']:
                     token = jwt.encode({'username':username, 'exp':datetime.datetime.utcnow() + datetime.timedelta(minutes=30)},secret_key,  algorithm='HS256')
                 return {'token_generated':token.decode('UTF-8')},200
-            return {"message":"Wrong Username or Password!!"},401
-            # return jsonify({"message":"Wrong Username or Password!!"}),401
+            return {"status":401,"message":"Wrong Username or Password!!"},401
+        
 
 

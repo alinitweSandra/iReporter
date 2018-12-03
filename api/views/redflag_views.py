@@ -11,9 +11,9 @@ redflag_records = []
 class Records(Resource):
       @token_required
       def get(self, current_user, id):
-            check_body()
+
             for user in users_list:
-                  if current_user == user['username'] and user['isAdmin'] is True:
+                  if current_user == user['username'] and user['isAdmin'] is False:
                         for store in redflag_records:
                               if store['id'] == id:
                                     return {"status":200,"data":[{'createdBy':store['createdBy'],'id':store['id'],\
@@ -22,29 +22,20 @@ class Records(Resource):
                   else:
                              
       
-                         return {"error":"you dont have the rights"} 
+                         return {"status":401,"error":"you dont have the rights"},401
                                                             
                         
       @token_required            
       def delete(self, current_user, id):
-            check_body()
-            data=request.get_json()      
-            
-            if 'createdBy' not in data: 
-                  return {"error":"created by field is empty"},400
-            
 
-            if check_type_string(self,data['createdBy'])is False:
-                  return {"error":"wrong createdBy format"} 
             for user in users_list:
                   if current_user == user['username'] and user['isAdmin'] is False:
                   
                         for store in redflag_records:
                               
                               if store['status']!='draft':
-                                    return {"message":"cant delete record due to status value"}
+                                    return {"status":400,"message":"cant delete record due to status value"},400
                               if store['id'] == id:
                                     redflag_records.remove(store)
                               
-                        return {"status":200,"data":[{"id":id,"message":"red-flag record has been deleted"}]},201
-
+                        return {"status":200,"data":[{"id":id,"message":"red-flag record has been deleted"}]},200

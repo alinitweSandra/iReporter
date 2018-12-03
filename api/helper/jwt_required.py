@@ -22,12 +22,12 @@ def token_required(f):
         if 'token' in request.headers:
             token = request.headers['token']
         if not token:
-            return {'message':'Token is missing!'}, 401
+            return {'status':401,'error':'Token is missing!'}, 401
         try:
             data = jwt.decode(token, secret_key, algorithm='HS256')
             current_user = data['username']
             #users_list = AUTH_USERS .users
         except:
-            return {'message':'Token is invalid!'}, 401
+            return {'status':401,'error':'Token is invalid!'}, 401
         return f(self, current_user, *args, **kwargs)
     return decorated
