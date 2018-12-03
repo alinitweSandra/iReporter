@@ -80,8 +80,153 @@ class Tests(TestCase):
         post_result = self.client().post('/api/v1/create-users', content_type = 'application/json',
                                          data=json.dumps(dict()))
         self.assertEqual(post_result.status_code, 400) 
+
+    def test_add_int_firstname(self):
+        """
+           method to add a record
+        """  
+        post_result = self.client().post('/api/v1/create-users', content_type='application/json',   data=json.dumps(
+                                         dict(
+                    firstname=1, lastname='lastname',
+                    email='email', phoneNumber='phoneNumber',
+                    username='username', password='password',
+                    isAdmin='isAdmin', 
+                    othernames='othernames'   )))
+
+ 
+        
+        
+        self.assertEqual(post_result.status_code, 400)   
+        json_data = json.loads(post_result.data)      
+        assert json_data['status'] == 400
+        self.assertTrue(post_result.json["error"], "enter only string") 
+        
+ 
+        
+        
+    def test_add_int_lastname(self):
+        """
+           method to add a record
+        """  
+        post_result = self.client().post('/api/v1/create-users', content_type='application/json',   data=json.dumps(
+                                         dict(
+                    firstname='firstname', lastname=1,
+                    email='email', phoneNumber='phoneNumber',
+                    username='username', password='password',
+                    isAdmin='isAdmin', 
+                    othernames='othernames'   )))
+
+ 
+        
+        
+        self.assertEqual(post_result.status_code, 400)   
+        json_data = json.loads(post_result.data)      
+        assert json_data['status'] == 400
+        self.assertTrue(post_result.json["error"], "enter only string") 
+        
+            
+    def test_add_int_phoneNumber(self):
+        """
+           method to add a record
+        """  
+        post_result = self.client().post('/api/v1/create-users', content_type='application/json',   data=json.dumps(
+                                         dict(
+                    firstname='firstname', lastname='lastname',
+                    email='email', phoneNumber=1,
+                    username='username', password='password',
+                    isAdmin='isAdmin', 
+                    othernames='othernames'   )))
+
+ 
+        
+        
+        self.assertEqual(post_result.status_code, 400)   
+        json_data = json.loads(post_result.data)      
+        assert json_data['status'] == 400
+        self.assertTrue(post_result.json["error"], "enter only string") 
+
+    def test_add_int_email(self):
+        """
+           method to add a record
+        """  
+        post_result = self.client().post('/api/v1/create-users', content_type='application/json',   data=json.dumps(
+                                         dict(
+                    firstname='firstname', lastname='lastname',
+                    email=1, phoneNumber='phoneNumber',
+                    username='username', password='password',
+                    isAdmin='isAdmin',
+                    othernames='othernames'   )))
+
+ 
+        
+        
+        self.assertEqual(post_result.status_code, 400)   
+        json_data = json.loads(post_result.data)      
+        assert json_data['status'] == 400
+        self.assertTrue(post_result.json["error"], "enter only string")
+
+    def test_add_int_othername(self):
+        """
+           method to add a record
+        """  
+        post_result = self.client().post('/api/v1/create-users', content_type='application/json',   data=json.dumps(
+                                         dict(
+                    firstname='firstname', lastname='lastname',
+                    email=1, phoneNumber='phoneNumber',
+                    username='username', password='password',
+                    isAdmin=False,
+                    othernames=1   )))
+
+ 
+        
+        
+        self.assertEqual(post_result.status_code, 400)   
+        json_data = json.loads(post_result.data)      
+        assert json_data['status'] == 400
+        self.assertTrue(post_result.json["error"], "enter only string")
+    
+    def test_add_int_username(self):
+        """
+           method to add a record
+        """  
+        post_result = self.client().post('/api/v1/create-users', content_type='application/json',   data=json.dumps(
+                                         dict(
+                    firstname='firstname', lastname='lastname',
+                    email=1, phoneNumber='phoneNumber',
+                    username='username', password='password',
+                    isAdmin='isAdmin',
+                    othernames='othernames'   )))
+
+ 
+        
+        
+        self.assertEqual(post_result.status_code, 400)   
+        json_data = json.loads(post_result.data)      
+        assert json_data['status'] == 400
+        self.assertTrue(post_result.json["error"], "enter only string")
     
     
+    def test_add_int_isAdmin(self):
+        """
+           method to add a record
+        """  
+        post_result = self.client().post('/api/v1/create-users', content_type='application/json', data=json.dumps(
+                                         dict(
+                    firstname='firstname', lastname='lastname',
+                    email=1, phoneNumber='phoneNumber',
+                    username='username', password='password',
+                    isAdmin='isAdmin', 
+                    othernames='othernames'   )))
+
+ 
+        
+        
+        self.assertEqual(post_result.status_code, 400)   
+        json_data = json.loads(post_result.data)      
+        assert json_data['status'] == 400
+        self.assertTrue(post_result.json["error"], "isAdmin: boolean")
+
+
     def test_add_record(self):
         """
            method to add a record
