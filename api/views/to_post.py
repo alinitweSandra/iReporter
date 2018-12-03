@@ -27,9 +27,7 @@ class RecordList(Resource):
             check_format=[data['comment'],data['type']] 
             if not all(isinstance(x,str) for x in check_format):
                   return {"status":400,"error":"enter only strings"},400
-            # if check_type_int(self,data['createdBy'])is False:
-            #       return {"status":400,"error":"createdBy: integer"},400
-
+            
             if check_type_list(self,data['location'])is False:
                   return {"status":400,"error":"location: list"},400
 

@@ -149,12 +149,7 @@ class Tests(TestCase):
         self.assertEqual(get_result.status_code, 200)   
         json_data = json.loads(get_result.data)      
         assert json_data['status'] == 200
-        
-
-
-
-
-
+       
     def test_delete_item(self) :  
         """
            method to test a record to be deleted
@@ -174,33 +169,33 @@ class Tests(TestCase):
     
 
 
-    # def test_update_record(self) :  
+    def test_update_record(self) :  
+        """
+            method to test a record to be deleted
+        """
+        get_result = self.client().get('/api/v1/red-flags/1',headers={"token": self.user_generated_token})
+        self.assertEqual(get_result.status_code, 200)
+
+
+    # def test_update_location(self) :  
     #     """
     #         method to test a record to be deleted
     #     """
-    #     get_result = self.client().get('/api/v1/red-flags/1',headers={"token": self.user_generated_token})
-    #     self.assertEqual(get_result.status_code, 200)
+    #     post_result = self.client().post('/api/v1/red-flags/1',headers={"token": self.user_generated_token}, content_type='application/json',
+    #                                     data=json.dumps({"status":"[100,100]"}))
 
-
-    # # def test_update_location(self) :  
-    # #     """
-    # #         method to test a record to be deleted
-    # #     """
-    # #     post_result = self.client().post('/api/v1/red-flags/1',headers={"token": self.user_generated_token}, content_type='application/json',
-    # #                                     data=json.dumps({"location":[100,100]}))
-
-    # #     self.assertEqual(post_result.status_code, 201)   
-    # #     json_data = json.loads(post_result.data)      
-    # #     assert json_data['status'] == 201
-    # #     assert json_data['data'][0] == {"id": 1}
-    # #     assert json_data['data'][1]=={"message":"uploaded red-flag's record location"} 
+    #     self.assertEqual(post_result.status_code, 201)   
+    #     json_data = json.loads(post_result.data)      
+    #     assert json_data['status'] == 201
+    #     assert json_data['data'][0] == {"id": 1}
+    #     assert json_data['data'][1]=={"message":"uploaded red-flag's record location"} 
         
-    # def test_update_a_non_existing_item(self) :  
-    #     """
-    #         method to test a record to be deleted
-    #     """
-    #     get_result = self.client().get('/api/v1/red-flags/not',headers={"token": self.user_generated_token})
-    #     self.assertEqual(get_result.status_code, 404)
+    def test_update_a_non_existing_item(self) :  
+        """
+            method to test a record to be deleted
+        """
+        get_result = self.client().get('/api/v1/red-flags/not',headers={"token": self.user_generated_token})
+        self.assertEqual(get_result.status_code, 404)
             
 
     
