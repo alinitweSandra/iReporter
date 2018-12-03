@@ -41,7 +41,7 @@ class RecordList(Resource):
                         if user['username']==current_user:
                               user_id=user['user_id']
                         id=len(redflag_records)+1
-                        item = {'id':id, 'createdOn':now.strftime("%Y-%m-%d %H:%M:%S"),
+                        item = {'id':id, 'createdOn':now.strftime("%Y-%m-%d"),
                         'createdBy':user_id,'type':data['type'],
                         'location':data['location'],'status':'draft', 'comment':data['comment']}
                         redflag_records.append(item)

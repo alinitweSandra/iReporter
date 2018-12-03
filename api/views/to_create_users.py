@@ -7,6 +7,7 @@ from flask_jwt import jwt_required
 import datetime
 import jwt
 from api.views.to_check_content import check_body
+import datetime
 
 secret_key='jose'
 
@@ -17,8 +18,9 @@ class CreateUser(Resource):
             if request.content_type != 'application/json': 
                   return {"status":400,"error":"format must be json"},400
             data=request.get_json()
+            now = datetime.datetime.now()
 
-            check_data=['firstname','lastname','othernames','email','username','registered','phoneNumber','password','isAdmin']
+            check_data=['firstname','lastname','othernames','email','username','phoneNumber','password','isAdmin']
             for check_data in check_data:
                   if check_data not in data:
                         return {"status":400,"error":"ensure all fields are filled"},400
@@ -29,10 +31,7 @@ class CreateUser(Resource):
                   return {"status":400,"error":"enter only strings"},400
             if check_type_bool(self,data['isAdmin']) is False:
                   return {"error":"isAdmin: boolean"},400
-            if check_type_date(self,data['registered']) is False:
-                  return {"status":400,"error":"registered:  dd/mm/yyyy"},400
-            
-         
+                     
             for users in users_list:
                   if users['email']==data['email'] and users['username']==data['username']:
                         return {"status":400,'message':"{} exists".format(data['username'])}, 400
@@ -40,7 +39,7 @@ class CreateUser(Resource):
                         id=len(users_list)+1
                         users = {'user_id':id, 'firstname':data['firstname'],
                         'lastname':data['lastname'],'email':data['email'],
-                        'othernames':data['othernames'],'registered':data['registered'],
+                        'othernames':data['othernames'],'registered':now.strftime("%Y-%m-%d"),
                          'username':data['username'],'password':data['password'], 
                          'isAdmin':data['isAdmin'],'phoneNumber':data['phoneNumber']}
                         users_list.append(users)
