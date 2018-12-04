@@ -6,7 +6,6 @@ from api.helper.jwt_required import token_required
 from api.views.to_check_content import check_body
 from api.views.to_create_users import users_list
 
-
 redflag_records = []
 
 class Records(Resource):

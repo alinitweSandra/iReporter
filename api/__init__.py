@@ -1,7 +1,6 @@
 from flask import Flask
 from flask_restful import Api
 
-
 from api.views.status import RecordStatus
 
 from flask_jwt import JWT,jwt_required
