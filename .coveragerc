@@ -1,2 +1,0 @@
-[run]
-omit = api/__init__.py, api/models/__init__.py,api/models/check_content.py,api/models/redflag.py,api/views/to_check_content.py,api/views/user.py,run.py
