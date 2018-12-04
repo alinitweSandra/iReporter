@@ -9,7 +9,11 @@ from api.views.to_create_users import users_list
 
 class RecordList(Resource):    
            
-      def get(self):   
+      @token_required    
+      def get(self,current_user):  
+            for user in users_list:
+                  if user['isAdmin']!=True: 
+                        return {"status":401,"message":"you dont have the rights!!"},401
       
             return {"status":200,"data": redflag_records},200
       @token_required
