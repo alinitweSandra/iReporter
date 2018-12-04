@@ -41,7 +41,7 @@ class Tests(TestCase):
                     firstname=self.new_user['firstname'], lastname=self.new_user['lastname'],
                     email=self.new_user['email'], phoneNumber=self.new_user['phoneNumber'],
                     username=self.new_user['username'], password=self.new_user['password'],
-                    isAdmin=self.new_user['isAdmin'], registered=self.new_user['registered'],
+                    isAdmin=self.new_user['isAdmin'],
                     othernames=self.new_user['othernames']
                 )
             )
@@ -83,7 +83,7 @@ class Tests(TestCase):
 
     def test_add_int_firstname(self):
         """
-           method to add a record
+           method to add firstname as integer
         """  
         post_result = self.client().post('/api/v1/create-users', content_type='application/json',   data=json.dumps(
                                          dict(
@@ -106,7 +106,7 @@ class Tests(TestCase):
         
     def test_add_int_lastname(self):
         """
-           method to add a record
+           method to add lastname as integer
         """  
         post_result = self.client().post('/api/v1/create-users', content_type='application/json',   data=json.dumps(
                                          dict(
@@ -127,7 +127,7 @@ class Tests(TestCase):
             
     def test_add_int_phoneNumber(self):
         """
-           method to add a record
+           method to add phoneNumber as integer
         """  
         post_result = self.client().post('/api/v1/create-users', content_type='application/json',   data=json.dumps(
                                          dict(
@@ -147,7 +147,7 @@ class Tests(TestCase):
 
     def test_add_int_email(self):
         """
-           method to add a record
+           method to add email as integer
         """  
         post_result = self.client().post('/api/v1/create-users', content_type='application/json',   data=json.dumps(
                                          dict(
@@ -167,7 +167,7 @@ class Tests(TestCase):
 
     def test_add_int_othername(self):
         """
-           method to add a record
+        method to add othername as integer
         """  
         post_result = self.client().post('/api/v1/create-users', content_type='application/json',   data=json.dumps(
                                          dict(
@@ -187,7 +187,7 @@ class Tests(TestCase):
     
     def test_add_int_username(self):
         """
-           method to add a record
+           method to add username as integer
         """  
         post_result = self.client().post('/api/v1/create-users', content_type='application/json',   data=json.dumps(
                                          dict(
@@ -208,7 +208,7 @@ class Tests(TestCase):
     
     def test_add_int_isAdmin(self):
         """
-           method to add a record
+           method to add isAdmin as integer
         """  
         post_result = self.client().post('/api/v1/create-users', content_type='application/json', data=json.dumps(
                                          dict(
@@ -247,7 +247,7 @@ class Tests(TestCase):
     
     def test_add_record_with_int_type(self):
         """
-           method to add a record
+           method to add type as integer
         """  
         post_result = self.client().post('/api/v1/red-flags',headers={"token": self.user_generated_token}, content_type='application/json',   data=json.dumps(dict(                                         
                                             type= 4,
@@ -265,7 +265,7 @@ class Tests(TestCase):
 
     def test_add_record_with_int_comment(self):
         """
-           method to add a record
+           method to add comment as integer
         """  
         post_result = self.client().post('/api/v1/red-flags',headers={"token": self.user_generated_token}, content_type='application/json',   data=json.dumps(dict(                                         
                                             type= "type",
@@ -285,7 +285,7 @@ class Tests(TestCase):
 
     def test_add_record_with_int_location(self):
         """
-           method to add a record
+           method to add location as integer
         """  
         post_result = self.client().post('/api/v1/red-flags',headers={"token": self.user_generated_token}, content_type='application/json',   data=json.dumps(dict(                                         
                                             type= "type",
@@ -303,7 +303,7 @@ class Tests(TestCase):
     
     def test_add_record_with_string_location(self):
         """
-           method to add a record
+           method to add location as string
         """  
         post_result = self.client().post('/api/v1/red-flags',headers={"token": self.user_generated_token}, content_type='application/json',   data=json.dumps(dict(                                         
                                             type= "type",
@@ -336,7 +336,7 @@ class Tests(TestCase):
     
     def test_get_non_record(self) :  
         """
-        method to test a record that does not exist
+        method to get a record that doesnt exist
         """
         get_result = self.client().get('/api/v1/red-flags/qwer',headers={"token": self.user_generated_token})
         self.assertEqual(get_result.status_code, 404)
@@ -390,7 +390,7 @@ class Tests(TestCase):
 
     def test_update_record(self) :  
         """
-            method to test a record to be deleted
+            method to test a record to be updated
         """
         get_result = self.client().get('/api/v1/red-flags/1',headers={"token": self.user_generated_token})
         self.assertEqual(get_result.status_code, 200)
@@ -398,22 +398,10 @@ class Tests(TestCase):
         
     def test_update_a_non_existing_item(self) :  
         """
-            method to test a record to be deleted
+            method to test a record to be updated
         """
         get_result = self.client().get('/api/v1/red-flags/not',headers={"token": self.user_generated_token})
         self.assertEqual(get_result.status_code, 404)
 
 
 
-# ############################# tests for checking whethera red-flag already exists #################################
-#     def test_whether_a_redflag_already_exists(self):
-#         get_result = self.client().post('/api/v1/red-flags', headers={"token": self.user_generated_token},content_type='application/json',
-#                             data=json.dumps({"type" : "type",
-#                                                 "location" : [0,0],
-#                                                 "comment" : "comment"}))
-#         assert get_result.status_code == 201
-
-#         json_data = json.loads(get_result.data)
-#         assert "data" in json_data
-#         assert json_data['data'][0]== {"status":201,"message":"user exists"} 
-#         #assert json_data['data'][0] == {"id": 1,"message": "created red-flag record"} 
