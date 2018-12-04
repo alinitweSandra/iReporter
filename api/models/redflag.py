@@ -2,14 +2,11 @@ import datetime
 
 def check_type_date(self, input_date):
              
-        day,month,year = input_date.split('/')      
-       
-        isValidDate = True
-        try :
-                x=datetime.datetime(int(year),int(month),int(day))
-        except ValueError :
-                isValidDate = False
-        if(isValidDate) :
+        day,month,year = input_date.split('/') 
+        
+        x=datetime.datetime(int(year),int(month),int(day))
+        
+        if(x) :
                 return True
         else :
                 return False
@@ -37,5 +34,13 @@ def check_type_int(self, input_type):
         return True
     else :
         return False
+
+def check_type_bool(self, input_type):
+        x= isinstance(input_type,bool)
+        if(x):
+                return True
+        else:
+                return False
+
                 
             
