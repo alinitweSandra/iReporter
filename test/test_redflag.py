@@ -17,9 +17,21 @@ class Tests(TestCase):
                         "email":"sandraalinitwe@gmail.com",
                         "phoneNumber":"256757852937",
                         "username":"user",
-                        "registered":"29/09/2015",
+                        
                         "isAdmin":False,
                         "password":"user"
+  
+        }
+
+        self.new_user1 = {"firstname":"aheebwa",
+                        "lastname":"kukute",
+                        "othernames":"bob",
+                        "email":"sandraalinitwe@gmail.com",
+                        "phoneNumber":"256757852937",
+                        "username":"admin",
+                        
+                        "isAdmin":True,
+                        "password":"admin"
   
         }
      
@@ -57,6 +69,7 @@ class Tests(TestCase):
                 )
             )
         )
+
 
         admin_login_result = self.client().post(
             '/api/v1/auth/login', content_type='application/json',
