@@ -73,7 +73,7 @@ class Tests(TestCase):
 
         admin_login_result = self.client().post(
             '/api/v1/auth/login', content_type='application/json',
-            data=jgitson.dumps(
+            data=json.dumps(
                 dict(
                     username=self.login_credentials_admin['username'],
                     password=self.login_credentials_admin['password']
